@@ -1,4 +1,6 @@
-package software.eii.ulpgc.psl.imageViewer;
+package software.eii.ulpgc.psl.imageViewer.Swing;
+
+import software.eii.ulpgc.psl.imageViewer.ImageDisplay;
 
 import javax.swing.*;
 import java.awt.*;

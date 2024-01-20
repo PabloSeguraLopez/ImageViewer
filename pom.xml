@@ -4,14 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>ImageViewer</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>${project.group}</groupId>
+    <artifactId>${project.name}</artifactId>
+    <version>${project.version}</version>
 
     <properties>
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.group>software.eii.ulpgc.psl.imageViewer</project.group>
+        <project.name>ImageViewer</project.name>
+        <project.version>1.0.0</project.version>
     </properties>
-    
+
 </project>

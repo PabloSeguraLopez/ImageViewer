@@ -1,11 +1,11 @@
-package software.eii.ulpgc.psl.imageViewer;
+package software.eii.ulpgc.psl.imageViewer.Swing;
+
+import software.eii.ulpgc.psl.imageViewer.ImageDisplay;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -74,14 +74,31 @@ public class SwingImageDisplay extends JPanel implements ImageDisplay {
         g.fillRect(0,0,this.getWidth(),this.getHeight());
         g.setColor(Color.BLACK);
         for (Paint paint : paints) {
-            java.awt.Image img = load(paint.name());
-            Dimension newDimension = resizeDimensions(img);
-            int x = paint.offset + (this.getWidth()-newDimension.width)/2;
-            int y = (this.getHeight()-newDimension.height)/2;
-            int w = (int) newDimension.getWidth();
-            int h = (int) newDimension.getHeight();
-            g.drawImage(img, x, y, w, h, null);
+            if (paint.name().endsWith(".gif")){
+                paintGif(g, paint);
+            }
+            else
+                paintImage(g, paint);
         }
+    }
+
+    private void paintImage(Graphics g, Paint paint) {
+        Image img = load(paint.name());
+        relocateAndDraw(g, paint, img);
+    }
+
+    private void paintGif(Graphics g, Paint paint) {
+        Image gif = new ImageIcon(paint.name()).getImage();
+        relocateAndDraw(g, paint, gif);
+    }
+
+    private void relocateAndDraw(Graphics g, Paint paint, Image gif) {
+        Dimension newDimension = resizeDimensions(gif);
+        int x = paint.offset + (this.getWidth()-newDimension.width)/2;
+        int y = (this.getHeight()-newDimension.height)/2;
+        int w = (int) newDimension.getWidth();
+        int h = (int) newDimension.getHeight();
+        g.drawImage(gif, x, y, w, h, null);
     }
 
     private Dimension resizeDimensions(java.awt.Image image) {

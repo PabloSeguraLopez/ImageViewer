@@ -1,2 +1,5 @@
-package software.eii.ulpgc.psl.imageViewer;public interface ImageLoader {
+package software.eii.ulpgc.psl.imageViewer;
+
+public interface ImageLoader {
+    Image load();
 }
